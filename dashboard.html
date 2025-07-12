@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart GPT - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+    }
+
+    .card a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .card a:hover {
+      background-color: #388E3C;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #eee;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Smart GPT 🚀</h1>
+    <p>All-in-One AI Tools Dashboard</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h3>🧠 ChatGPT AI</h3>
+      <a href="ai-tools/chatgpt.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🖼️ AI Image Generator</h3>
+      <a href="ai-tools/image-generator.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🔊 Text to Voice</h3>
+      <a href="ai-tools/text-to-voice.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🎞️ YouTube Shorts AI</h3>
+      <a href="ai-tools/youtube-shorts-ai.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🌐 Website Builder</h3>
+      <a href="ai-tools/website-builder.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>💻 Code Generator</h3>
+      <a href="ai-tools/code-generator.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🎬 AI Video Generator</h3>
+      <a href="ai-tools/ai-video-generator.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🎭 Cartoon Video AI</h3>
+      <a href="ai-tools/cartoon-video-ai.html">Use Now</a>
+    </div>
+    <div class="card">
+      <h3>🧥 Outfit Changer AI</h3>
+      <a href="ai-tools/outfit-changer.html">Use Now</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Smart GPT Pro | Powered by AI
+  </footer>
+
+</body>
+</html>
+<script src="auth.js"></script>
+<script>
+  checkAuth(); // Check if logged in
+</script>
+<button onclick="logoutUser()">Logout</button>
+<div class="container">
+  <h2>Welcome, Admin 👋</h2>
+  <p>You are now logged into Smart GPT.</p>
+  <button class="logout-btn" onclick="logoutUser()">Logout</button>
+</div>

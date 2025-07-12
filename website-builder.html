@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Website Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🛠️ AI Website Builder</h2>
+  <p>Describe the website you want to build:</p>
+
+  <textarea id="prompt" placeholder="e.g. A personal portfolio with 3 sections and contact form..."></textarea>
+  <button onclick="generateWebsite()">Generate Website Code</button>
+
+  <h3>🧾 Generated HTML:</h3>
+  <div id="output"><i>AI-generated HTML will appear here...</i></div>
+
+  <script>
+    async function generateWebsite() {
+      const prompt = document.getElementById("prompt").value;
+      const output = document.getElementById("output");
+      output.innerHTML = "⏳ Generating... Please wait...";
+
+      const response = await fetch("https://api.openai.com/v1/completions", {
+        method: "POST",
+          headers: {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer sk-abc123456789xyzEXAMPLE"
+},
+        },
+        body: JSON.stringify({
+          model: "text-davinci-003",
+          prompt: `Generate a simple HTML+CSS website based on this description: ${prompt}`,
+          max_tokens: 1500,
+          temperature: 0.5,
+        })
+      });
+
+      const data = await response.json();
+      if (data.choices && data.choices[0]) {
+        output.innerText = data.choices[0].text;
+      } else {
+        output.innerText = "❌ Something went wrong!";
+      }
+    }
+  </script>
+
+</body>
+</html>

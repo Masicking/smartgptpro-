@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 15px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Code Generator 🧠</h1>
+
+  <label for="language">Select Language:</label>
+  <select id="language">
+    <option value="Python">Python</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="HTML">HTML</option>
+    <option value="CSS">CSS</option>
+    <option value="C++">C++</option>
+    <option value="Java">Java</option>
+  </select>
+
+  <label for="prompt">Enter what you want the code to do:</label>
+  <textarea id="prompt" rows="5" placeholder="Example: Create a function to calculate factorial"></textarea>
+
+  <button onclick="generateCode()">Generate Code</button>
+
+  <h3>Generated Code:</h3>
+  <pre id="output">Your generated code will appear here...</pre>
+
+  <script>
+    async function generateCode() {
+      const prompt = document.getElementById("prompt").value;
+      const language = document.getElementById("language").value;
+      const output = document.getElementById("output");
+
+      output.textContent = "Generating... Please wait...";
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_OPENAI_API_KEY" //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
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {
+              role: "system",
+              content: "You are a helpful assistant that writes clean and simple " + language + " code."
+            },
+            {
+              role: "user",
+              content: prompt
+            }
+          ],
+          temperature: 0.3
+        })
+      });
+
+      const data = await response.json();
+      if (data.choices && data.choices[0]) {
+        output.textContent = data.choices[0].message.content.trim();
+      } else {
+        output.textContent = "Error: Code not generated.";
+      }
+    }
+  </script>
+</body>
+</html>

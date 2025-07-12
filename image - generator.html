@@ -1,0 +1,19 @@
+<input id="prompt" placeholder="Describe your image" />
+<button onclick="generate()">Generate</button>
+<img id="output"/>
+
+<script>
+async function generate() {
+  const prompt = document.getElementById("prompt").value;
+  const res = await fetch("https://api.openai.com/v1/images/generations", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ prompt, n: 1, size: "512x512" })
+  });
+  const data = await res.json();
+  document.getElementById("output").src = data.data[0].url;
+}
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Shorts AI</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    textarea, input, button { padding: 10px; width: 300px; margin: 10px; }
+  </style>
+</head>
+<body>
+  <h1>YouTube Shorts AI 🎬</h1>
+  <textarea id="script" rows="6" placeholder="Type your script or paste YouTube video link..."></textarea><br>
+  <button onclick="generateShort()">Generate Shorts</button>
+  <p id="status"></p>
+  <video id="shortVideo" controls style="display:none; width:300px;"></video>
+
+  <script>
+    async function generateShort() {
+      const script = document.getElementById('script').value;
+      document.getElementById('status').innerText = "Generating...";
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: script })
+      });
+      const data = await res.json();
+      document.getElementById('status').innerText = data.message;
+
+      if (data.videoUrl) {
+        const video = document.getElementById('shortVideo');
+        video.src = data.videoUrl;
+        video.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

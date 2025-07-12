@@ -1,0 +1,11 @@
+{
+  "name": "youtube-shorts-ai",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}jgE7alAc5Sf7GlP7rEx5o0CGTlXrZVQlACwkRV4LWJsL6XXhpkITFXXr
